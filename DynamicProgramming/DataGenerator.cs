@@ -9,7 +9,12 @@ namespace DynamicProgramming
     public class DataGenerator
     {
         const string DATA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Random rnd = new Random();
+        Random rnd;
+
+        public DataGenerator()
+        {
+            rnd = new Random();
+        }
 
         public List<char> GetSequence(int N)
         {
