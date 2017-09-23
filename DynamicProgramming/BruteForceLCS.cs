@@ -12,17 +12,17 @@ namespace DynamicProgramming
         {
             int N = subSequencesX.Length;
             int M = subSequencesY.Length;
-            List<char> lcs = subSequencesX[0];
+            List<char> lcs = new List<char>();
             int index = 0;
 
             for (int i = 0; i < N; i++)
             {
+                var seqX = new string(subSequencesX[i].ToArray());
                 for (int j = 0; j < M; j++)
                 {
-                    var seqX = new string(subSequencesX[i].ToArray());
                     var seqY = new string(subSequencesY[j].ToArray());
 
-                    if (seqX.Equals(seqY))
+                    if (seqY.Equals(seqX))
                     {
                         if (subSequencesX[i].Count > lcs.Count)
                         {
@@ -38,20 +38,22 @@ namespace DynamicProgramming
 
         public static void GenerateSubSequences(List<char> sequence, List<char>[] subSequences)
         {
-            int N = subSequences.Length;
+            int M = subSequences.Length;
 
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < M; i++)
             {
                 subSequences[i] = new List<char>();
                 StoreSubSequence(i, i + 1, sequence, subSequences);
             }
         }
 
-        public static void StoreSubSequence(int i, int n, List<char> sequence, List<char>[] subSequences)
+        public static void StoreSubSequence(int i, int mask, List<char> sequence, List<char>[] subSequences)
         {
-            for (int j = 0; j < n; j++)
+            int N = sequence.Count;
+
+            for (int j = 0; j < N; j++)
             {
-                if (((j + 1) & n) == (j + 1))
+                if (((1 << j) & mask) != 0)
                 {
                     subSequences[i].Add(sequence[j]); 
                 }

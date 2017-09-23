@@ -8,11 +8,11 @@ namespace DynamicProgramming
 {
     public class DataGenerator
     {
-        public const string DATA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const string DATA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rnd = new Random();
 
         public List<char> GetSequence(int N)
         {
-            Random rnd = new Random();
             List<char> sequence = new List<char>(N);
 
             for (int i = 0; i < N; i++)

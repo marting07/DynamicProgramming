@@ -10,6 +10,8 @@ namespace DynamicProgramming
     {
         public static void exampleBruteForce(List<char> seqX, List<char> seqY)
         {
+            Console.WriteLine("Brute Force");
+
             var subSequencesX = new List<char>[(int)Math.Pow(2, seqX.Count)-1];
             var subSequencesY = new List<char>[(int)Math.Pow(2, seqY.Count)-1];
 
@@ -18,14 +20,22 @@ namespace DynamicProgramming
 
             var lcs = BruteForceLCS.LCS(subSequencesX, subSequencesY);
 
-            Console.WriteLine($"LCS: {lcs.ToString()}");
+            PrintSequence(lcs, "LCS");
         }
 
         public static void exampleDynamicProgramming(List<char> seqX, List<char> seqY)
         {
+            Console.WriteLine("Dynamic Programming");
+
             var lcs = DynamicProgrammingLCS.LCS(seqX, seqY);
 
-            Console.WriteLine($"LCS: {lcs.ToString()}");
+            PrintSequence(lcs, "LCS");
+        }
+
+        public static void PrintSequence(List<char> sequence, string name)
+        {
+            Console.WriteLine($"{name}: {String.Join(", ", sequence.ToArray())}");
+
         }
 
         static void Main(string[] args)
@@ -35,9 +45,14 @@ namespace DynamicProgramming
             var seqX = dataGenerator.GetSequence(10);
             var seqY = dataGenerator.GetSequence(10);
 
+            PrintSequence(seqX, "seqX");
+            PrintSequence(seqY, "seqY");
+
             exampleBruteForce(seqX, seqY);
 
             exampleDynamicProgramming(seqX, seqY);
+
+            Console.ReadLine();
         }
     }
 }

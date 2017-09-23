@@ -24,27 +24,31 @@ namespace DynamicProgramming
                 C[0, j] = 0;
             }
 
-            for (int i = 1; i < N + 1; i++)
+            for (int i = 0; i < N; i++)
             {
-                for (int j = 1; j < M + 1; j++)
+                for (int j = 0; j < M; j++)
                 {
+                    int i_p = i + 1;
+                    int j_p = j + 1;
                     if (sequenceX[i] == sequenceY[j])
-                        C[i, j] = C[i - 1, j - 1] + 1;
+                        C[i_p, j_p] = C[i_p - 1, j_p - 1] + 1;
                     else
-                        C[i, j] = Math.Max(C[i - 1, j], C[i, j - 1]);
+                        C[i_p, j_p] = Math.Max(C[i_p - 1, j_p], C[i_p, j_p - 1]);
                 }
             }
 
-            return GetLCS(sequenceX, sequenceY, C, N, M);
+            return GetLCS(sequenceX, sequenceY, C, N - 1, M - 1);
         }
 
         public static List<char> GetLCS(List<char> sequenceX, List<char> sequenceY, int [,] C, int i, int j)
         {
-            if (i == 0 || j == 0)
+            int i_p = i + 1;
+            int j_p = j + 1;
+            if (i == -1 || j == -1)
                 return new List<char>();
             else if (sequenceX[i] == sequenceY[j])
                 return new List<char>() { sequenceX[i] }.Concat(GetLCS(sequenceX, sequenceY, C, i - 1, j - 1)).ToList();
-            else if (C[i - 1, j] >= C[i, j - 1])
+            else if (C[i_p - 1, j_p] >= C[i_p, j_p - 1])
                 return GetLCS(sequenceX, sequenceY, C, i - 1, j);
             else
                 return GetLCS(sequenceX, sequenceY, C, i, j - 1);
