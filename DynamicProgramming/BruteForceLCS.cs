@@ -57,15 +57,5 @@ namespace DynamicProgramming
                 }
             }
         }
-
-        public static void InitMemory(List<char>[] subSequences)
-        {
-            int N = subSequences.Length;
-
-            for (int i = 0; i < N; i++)
-            {
-                subSequences[i] = new List<char>();
-            }
-        }
     }
 }
