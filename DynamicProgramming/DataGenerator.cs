@@ -8,7 +8,7 @@ namespace DynamicProgramming
 {
     public class DataGenerator
     {
-        const string DATA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const string DATA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random rnd;
 
         public DataGenerator()

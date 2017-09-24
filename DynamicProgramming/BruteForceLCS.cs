@@ -47,7 +47,7 @@ namespace DynamicProgramming
             }
         }
 
-        public static void StoreSubSequence(int i, int mask, List<char> sequence, List<char>[] subSequences)
+        private static void StoreSubSequence(int i, int mask, List<char> sequence, List<char>[] subSequences)
         {
             int N = sequence.Count;
 
