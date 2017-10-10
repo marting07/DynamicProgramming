@@ -20,10 +20,11 @@ namespace DynamicProgramming
             BruteForceLCS.GenerateSubSequences(seqX, subSequencesX);
             BruteForceLCS.GenerateSubSequences(seqY, subSequencesY);
 
+            sw.Reset();
             sw.Start();
             var lcs = BruteForceLCS.LCS(subSequencesX, subSequencesY);
             sw.Stop();
-            TimeSpan elapsedTime = sw.Elapsed;
+            long elapsedTime = sw.ElapsedMilliseconds;
             Console.WriteLine($"Elapsed time: {elapsedTime}");
 
             Console.WriteLine();
@@ -35,10 +36,11 @@ namespace DynamicProgramming
             Console.WriteLine();
             Console.WriteLine("Dynamic Programming");
 
+            sw.Reset();
             sw.Start();
             var lcs = DynamicProgrammingLCS.LCS(seqX, seqY);
             sw.Stop();
-            TimeSpan elapsedTime = sw.Elapsed;
+            long elapsedTime = sw.ElapsedMilliseconds;
             Console.WriteLine($"Elapsed time: {elapsedTime}");
 
             Console.WriteLine();
@@ -58,8 +60,8 @@ namespace DynamicProgramming
         {
             var dataGenerator = new DataGenerator();
 
-            var seqX = dataGenerator.GetSequence(20);
-            var seqY = dataGenerator.GetSequence(20);
+            var seqX = dataGenerator.GetSequence(10);
+            var seqY = dataGenerator.GetSequence(10);
 
             PrintSequence(seqX, "seqX");
             PrintSequence(seqY, "seqY");
